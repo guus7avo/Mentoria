@@ -9,11 +9,12 @@ import {
   Users,
   Briefcase,
   BarChart3,
-  Settings,
+  Cog,
   Menu,
   X,
   ChevronLeft,
 } from 'lucide-react';
+import { IconBadge } from '@/src/shared/ui/IconBadge';
 
 const menuItems = [
   { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
@@ -21,7 +22,7 @@ const menuItems = [
   { name: 'Candidates', path: '/candidates', icon: Users },
   { name: 'Job Postings', path: '/job-postings', icon: Briefcase },
   { name: 'Analytics', path: '/analytics', icon: BarChart3 },
-  { name: 'Settings', path: '/settings', icon: Settings },
+  { name: 'Settings', path: '/settings', icon: Cog },
 ];
 
 export default function Sidebar() {
@@ -60,9 +61,7 @@ export default function Sidebar() {
         {/* Header */}
         <div className="h-16 px-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-linear-to-br from-purple-500 to-blue-600 rounded-xl flex items-center justify-center">
-              <span className="text-white font-bold">AT</span>
-            </div>
+            <IconBadge size='sm'>AI</IconBadge>
             {!isCollapsed && (
               <div>
                 <h1 className="text-sm font-semibold">ATS Analyzer</h1>
