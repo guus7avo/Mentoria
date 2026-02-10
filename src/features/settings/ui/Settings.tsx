@@ -1,24 +1,31 @@
-import { Cog } from "lucide-react";
-import { IconBadge } from '@/src/shared/ui/IconBadge';
+"use client";
+
+import { useState } from "react";
+import { SettingsMenu } from "./SettingsMenu";
+import { SettingsContent } from "./SettingsContent";
+import { PageHeader } from "@/shared/ui/PageHeader";
+import { Settings as SettingsIcon } from "lucide-react";
+import { SettingsSectionKey } from "../types/settings.types";
 
 export function Settings() {
+  const [activeSection, setActiveSection] = useState<SettingsSectionKey>("profile");
+
   return (
-    <div className="h-full w-full p-8 space-y-4">
+    <div className="p-8 space-y-6">
+      <PageHeader
+        title="Settings"
+        subtitle="Manage your preferences"
+        icon={SettingsIcon}
+      />
 
-      {/* Título com ícone */}
-      <div className="flex items-center gap-3">
-        <IconBadge>
-          <Cog/>
-        </IconBadge>
+      <div className="flex gap-6">
+        <SettingsMenu
+          active={activeSection}
+          onChange={setActiveSection}
+        />
 
-        <h1 className="text-3xl font-bold text-gray-900">
-          Settings
-        </h1>
+        <SettingsContent active={activeSection} />
       </div>
-
-      <p className="text-gray-600">
-        Bem-vindo ao painel Settings
-      </p>
     </div>
   );
 }
