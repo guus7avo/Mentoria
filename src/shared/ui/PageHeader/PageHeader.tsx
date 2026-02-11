@@ -12,7 +12,7 @@ export function PageHeader({ title, subtitle, icon: Icon }: PageHeaderProps) {
     <div className="flex items-start gap-4">
       {Icon && (
         <IconBadge size="md">
-          <Icon size={18} />
+          <Icon/>
         </IconBadge>
       )}
 

@@ -15,7 +15,7 @@ export function ProfileSettings() {
   )
 
   return (
-    <SettingsSection title="Profile">
+    <SettingsSection>
       <div className="space-y-4 max-w-md">
         {/* Name */}
         <div>

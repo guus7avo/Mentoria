@@ -5,24 +5,23 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import {
   LayoutDashboard,
-  FileText,
-  Users,
-  Briefcase,
+  BookMarked,
+  SearchIcon,
   BarChart3,
-  Cog,
+  SettingsIcon,
   Menu,
   X,
   ChevronLeft,
+  LibraryBig
 } from 'lucide-react';
 import { IconBadge } from '@/shared/ui/IconBadge';
 
 const menuItems = [
   { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
-  { name: 'Resume Analyzer', path: '/resume-analyzer', icon: FileText },
-  { name: 'Candidates', path: '/candidates', icon: Users },
-  { name: 'Job Postings', path: '/job-postings', icon: Briefcase },
+  { name: 'Library', path: '/library', icon: BookMarked },
+  { name: 'Search', path: '/search', icon: SearchIcon },
   { name: 'Analytics', path: '/analytics', icon: BarChart3 },
-  { name: 'Settings', path: '/settings', icon: Cog },
+  { name: 'Settings', path: '/settings', icon: SettingsIcon },
 ];
 
 export default function Sidebar() {
@@ -61,18 +60,20 @@ export default function Sidebar() {
         {/* Header */}
         <div className="h-16 px-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <IconBadge size='sm'>AI</IconBadge>
+            <IconBadge size='sm'>
+              <LibraryBig />
+            </IconBadge>
             {!isCollapsed && (
               <div>
-                <h1 className="text-sm font-semibold">ATS Analyzer</h1>
-                <p className="text-xs text-foreground">AI-Powered</p>
+                <h1 className="text-sm font-semibold">BookLog</h1>
+                <p className="text-xs text-foreground">Track your reading</p>
               </div>
             )}
           </div>
 
           <button
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="hidden lg:block p-2 hover:bg-gray-50 rounded-xl transition-colors"
+            className="hidden lg:block p-2 hover:bg-background-50 rounded-xl transition-colors"
           >
             <ChevronLeft
               size={20}
@@ -96,8 +97,8 @@ export default function Sidebar() {
                   flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors
                   ${isCollapsed ? 'lg:justify-center' : ''}
                   ${isActive 
-                    ? 'bg-purple-50 text-purple-700' 
-                    : 'text-gray-700 hover:bg-gray-50'
+                    ? "bg-purple-50 text-purple-600 dark:text-purple-400 font-medium"
+                    : "text-foreground/70 hover:bg-purple-50 hover:text-purple-600"
                   }
                 `}
               >

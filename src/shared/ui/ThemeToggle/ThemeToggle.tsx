@@ -14,7 +14,7 @@ export function ThemeToggle() {
       className="
         flex items-center gap-2 rounded-md border
         bg-background px-3 py-2 text-sm text-foreground
-        hover:bg-foreground/5
+        hover:bg-purple-50 hover:text-purple-600
         transition-colors
       "
     >
