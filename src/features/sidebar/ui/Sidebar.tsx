@@ -14,7 +14,7 @@ import {
   X,
   ChevronLeft,
 } from 'lucide-react';
-import { IconBadge } from '@/src/shared/ui/IconBadge';
+import { IconBadge } from '@/shared/ui/IconBadge';
 
 const menuItems = [
   { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
@@ -35,7 +35,7 @@ export default function Sidebar() {
       {/* Botão mobile */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed left-4 top-4 z-50 lg:hidden bg-white p-2 rounded-lg shadow-lg"
+        className="fixed left-4 top-4 z-50 lg:hidden bg-background p-2 rounded-lg shadow-lg"
       >
         {isOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
@@ -43,7 +43,7 @@ export default function Sidebar() {
       {/* Overlay mobile */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          className="fixed inset-0 bg-background/50 z-40 lg:hidden"
           onClick={() => setIsOpen(false)}
         />
       )}
@@ -51,7 +51,7 @@ export default function Sidebar() {
       {/* Sidebar */}
       <div
         className={`
-          fixed lg:static h-screen bg-white z-40
+          fixed lg:static h-screen bg-background z-40
           transition-all duration-300
           ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
           ${isCollapsed ? 'lg:w-20' : 'lg:w-64'}
@@ -65,7 +65,7 @@ export default function Sidebar() {
             {!isCollapsed && (
               <div>
                 <h1 className="text-sm font-semibold">ATS Analyzer</h1>
-                <p className="text-xs text-gray-500">AI-Powered</p>
+                <p className="text-xs text-foreground">AI-Powered</p>
               </div>
             )}
           </div>

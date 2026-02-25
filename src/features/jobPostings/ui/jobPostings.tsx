@@ -1,5 +1,5 @@
 import { Briefcase } from "lucide-react";
-import { IconBadge } from '@/src/shared/ui/IconBadge';
+import { IconBadge } from '@/shared/ui/IconBadge';
 
 export function JobPostings() {
   return (
