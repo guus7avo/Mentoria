@@ -8,7 +8,7 @@ type Props = {
 
 export function SettingsMenu({ active, onChange }: Props) {
   return (
-    <div className="w-56 bg-background rounded-xl p-2 space-y-1">
+    <div className="bg-background rounded-xl p-2 flex lg:flex-col gap-2 overflow-x-auto lg:w-56">
       {SETTINGS_MENU.map(({ key, label, icon: Icon }) => {
         const isActive = active === key;
 
@@ -21,14 +21,15 @@ export function SettingsMenu({ active, onChange }: Props) {
               transition-colors
               ${
                 isActive
-                  ? "bg-purple-50 text-purple-700 font-medium"
-                  : "text-gray-700 hover:bg-gray-50"
+                  ? "bg-purple-50 text-purple-600 dark:text-purple-400 font-medium"
+                  : "text-foreground/70 hover:bg-purple-50 hover:text-purple-600 dark:hover:text-purple-400"
               }
             `}
           >
             <Icon size={18} />
             <span>{label}</span>
           </button>
+
         );
       })}
     </div>

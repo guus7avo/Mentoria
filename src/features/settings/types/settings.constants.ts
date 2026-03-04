@@ -27,11 +27,6 @@ export const SETTINGS_MENU: SettingsMenuItem[] = [
     icon: Shield,
   },
   {
-    key: "data",
-    label: "Data Management",
-    icon: Shield,
-  },
-  {
     key: "appearance",
     label: "Appearance",
     icon: Palette,
