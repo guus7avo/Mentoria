@@ -2,12 +2,17 @@
 
 import { SettingsSection } from './SettingsSection'
 import { useProfileStore } from '../../profile/profile.store'
+import { useShallow } from 'zustand/shallow'
 
 export function ProfileSettings() {
-  const name = useProfileStore((state) => state.name)
-  const email = useProfileStore((state) => state.email)
-  const setName = useProfileStore((state) => state.setName)
-  const setEmail = useProfileStore((state) => state.setEmail)
+  const { name, email, setName, setEmail } = useProfileStore(
+    useShallow((state) => ({
+      name: state.name,
+      email: state.email,
+      setName: state.setName,
+      setEmail: state.setEmail
+    }))
+  )
 
   return (
     <SettingsSection title="Profile">

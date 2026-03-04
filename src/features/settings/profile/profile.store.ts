@@ -8,8 +8,8 @@ type ProfileState = {
 }
 
 export const useProfileStore = create<ProfileState>((set) => ({
-  name: 'Gustavo',
-  email: 'gustavo.nascimento@dtidigital.com',
+  name: '',
+  email: '',
   setName: (name) => set({ name }),
   setEmail: (email) => set({ email }),
 }))
