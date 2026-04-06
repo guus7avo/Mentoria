@@ -1,0 +1,24 @@
+import { SearchIcon } from "lucide-react";
+import { IconBadge } from '@/shared/ui/IconBadge';
+
+export function Search() {
+  return (
+    <div className="h-full w-full p-8 space-y-4">
+
+      {/* Título com ícone */}
+      <div className="flex items-center gap-3">
+        <IconBadge>
+          <SearchIcon/>
+        </IconBadge>
+
+        <h1 className="text-3xl font-bold text-gray-900">
+          Search
+        </h1>
+      </div>
+
+      <p className="text-gray-600">
+        Bem-vindo a Search
+      </p>
+    </div>
+  );
+}
