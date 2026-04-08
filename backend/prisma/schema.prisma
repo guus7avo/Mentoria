@@ -1,0 +1,218 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ============================================================================
+// User
+// ============================================================================
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  username      String?   @unique
+  image         String?
+  password      String?
+  emailVerified DateTime?
+  birthDate     DateTime?
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  accounts      Account[]
+  sessions      Session[]
+  userBooks     UserBook[]
+  ratings       Rating[]
+  goals         Goal[]
+}
+
+// ============================================================================
+// Auth (NextAuth compatible)
+// ============================================================================
+
+model Account {
+  id                String   @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// ============================================================================
+// Book
+// ============================================================================
+
+model Book {
+  id              String   @id @default(cuid())
+  title           String
+  author          String
+  isbn            String?
+  coverImageUrl   String?  @map("cover_image_url")
+  synopsis        String?
+  totalPages      Int?     @map("total_pages")
+
+  externalId      String?  @map("external_id")
+  externalSource  String?  @map("external_source")
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  userBooks       UserBook[]
+  ratings         Rating[]
+
+  @@unique([externalSource, externalId])
+
+  @@index([isbn])
+  @@index([externalId])
+  @@index([title])
+  @@index([author])
+}
+
+// ============================================================================
+// UserBook (library + progress)
+// ============================================================================
+
+model UserBook {
+  id          String   @id @default(cuid())
+  userId      String   @map("user_id")
+  bookId      String   @map("book_id")
+
+  status      BookStatus @default(WANT_TO_READ)
+
+  pagesRead   Int?     @map("pages_read")
+  addedAt     DateTime @default(now()) @map("added_at")
+  completedAt DateTime? @map("completed_at")
+
+  comment     String?
+  stars       Int?
+  startDate   DateTime? @map("start_date")
+  endDate     DateTime? @map("end_date")
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  book        Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  tags        Tag[]
+
+  @@unique([userId, bookId])
+  @@index([userId])
+  @@index([userId, status])
+}
+
+// ============================================================================
+// Rating
+// ============================================================================
+
+model Rating {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  bookId    String   @map("book_id")
+
+  stars     Int
+  review    String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  book      Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, bookId])
+  @@index([userId])
+  @@index([bookId])
+}
+
+// ============================================================================
+// Tag
+// ============================================================================
+
+model Tag {
+  id          String   @id @default(cuid())
+  name        String
+  userBookId  String   @map("user_book_id")
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  userBook    UserBook @relation(fields: [userBookId], references: [id], onDelete: Cascade)
+}
+
+// ============================================================================
+// Goal
+// ============================================================================
+
+model Goal {
+  id         String     @id @default(cuid())
+  userId     String
+  type       GoalType
+  period     GoalPeriod
+  target     Int
+
+  startDate  DateTime   @map("start_date")
+  endDate    DateTime?  @map("end_date")
+  year       Int
+  month      Int?
+  week       Int?
+
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// ============================================================================
+// Enums
+// ============================================================================
+
+enum BookStatus {
+  WANT_TO_READ
+  IN_PROGRESS
+  COMPLETED
+}
+
+enum GoalType {
+  TOTAL_BOOKS
+  PAGES
+  READING_DAYS
+}
+
+enum GoalPeriod {
+  WEEKLY
+  MONTHLY
+  YEARLY
+  CUSTOM
+}
