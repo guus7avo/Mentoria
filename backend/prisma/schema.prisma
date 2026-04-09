@@ -4,7 +4,8 @@
 // schema.prisma
 
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "../generated/prisma"  // caminho relativo ao prisma/schema.prisma
 }
 
 datasource db {
@@ -116,7 +117,6 @@ model UserBook {
   completedAt DateTime? @map("completed_at")
 
   comment     String?
-  stars       Int?
   startDate   DateTime? @map("start_date")
   endDate     DateTime? @map("end_date")
 
@@ -142,7 +142,7 @@ model Rating {
   userId    String   @map("user_id")
   bookId    String   @map("book_id")
 
-  stars     Int
+  stars     Int?
   review    String?
 
   createdAt DateTime @default(now())
