@@ -3,7 +3,7 @@
 # -----------------
 # Node / Next.js
 # -----------------
-/node_modules
+node_modules/
 /.pnp
 .pnp.*
 .yarn/*
@@ -13,7 +13,7 @@
 !.yarn/versions
 
 # Next.js
-/.next/
+.next/
 /out/
 
 # Production build
@@ -79,3 +79,6 @@ yarn-error.log*
 *.tmp
 *.swp
 *.swo
+
+# Prisma generated
+backend/generated/
