@@ -10,7 +10,8 @@
     "@prisma/adapter-pg": "^7.7.0",
     "@prisma/client": "^7.7.0",
     "dotenv": "^17.4.1",
-    "pg": "^8.20.0"
+    "pg": "^8.20.0",
+    "zod": "^4.3.6"
   },
   "type": "module",
   "scripts": {

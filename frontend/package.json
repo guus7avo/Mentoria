@@ -20,13 +20,21 @@
     "zustand": "^5.0.11"
   },
   "devDependencies": {
+    "@googleapis/books": "^8.0.1",
+    "@prisma/client": "^7.7.0",
     "@tailwindcss/postcss": "^4",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@types/jest": "^30.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.0.1",
+    "jest": "^30.3.0",
+    "prisma": "^7.7.0",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "ts-jest": "^29.4.9",
+    "typescript": "^5",
+    "zod": "^4.3.6"
   }
 }

@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
-    "target": "ES2022",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "ES2020",
     "strict": true,
     "esModuleInterop": true,
-    "ignoreDeprecations": "5.0",
+    "ignoreDeprecations": "6.0",
     "types": ["node"]
   },
   "include": ["src", "prisma"]
